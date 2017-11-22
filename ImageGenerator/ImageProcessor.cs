@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace ImageGenerator
 {
@@ -11,8 +12,9 @@ namespace ImageGenerator
         public void Process(bool debug = false)
         {
             _debug = debug;
-            var allImages = Directory.GetFiles("img", "*.jpg");
+            var allImages = Directory.GetFiles("img", "*.jpg").ToList();
             var index = 0;
+            allImages.Sort();
             foreach (var i in allImages)
             {
                 using (var image = new Bitmap(Image.FromFile(i)))
